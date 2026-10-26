@@ -11,7 +11,7 @@ class DemoUsersSeeder extends Seeder
     public function run(): void
     {
         $now = now();
-        $password = Hash::make('CustomerDemo123!');
+        $password = Hash::make('password');
 
         $users = [
             ['name' => 'Demo Customer One', 'email' => 'customer1@example.test'],
