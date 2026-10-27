@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
         /*
          * 1. Validation errors
          */
-        if ($exception instanceof ValidationException) {
+        else if ($exception instanceof ValidationException) {
             return ApiResponse::error(
                 message: 'The given data was invalid.',
                 code: 422,
@@ -60,7 +60,7 @@ class Handler extends ExceptionHandler
         /*
          * 2. Authentication errors
          */
-        if ($exception instanceof AuthenticationException) {
+        else if ($exception instanceof AuthenticationException) {
             return ApiResponse::error(
                 message: 'Unauthenticated.',
                 code: 401
@@ -71,7 +71,7 @@ class Handler extends ExceptionHandler
          * 3. Custom API exceptions
          */
 
-        if ($exception instanceof BaseApiException)
+        else if ($exception instanceof BaseApiException)
         {
             return ApiResponse::error(
                 message: $exception->getMessage(),
@@ -82,7 +82,7 @@ class Handler extends ExceptionHandler
         /*
          * 4. Authorization errors
          */
-        if ($exception instanceof AuthorizationException) {
+        else if ($exception instanceof AuthorizationException) {
             return ApiResponse::error(
                 message: 'You are not authorized to perform this action.',
                 code: 403
@@ -92,7 +92,7 @@ class Handler extends ExceptionHandler
         /*
          * 5. Eloquent model not found
          */
-        if ($exception instanceof ModelNotFoundException) {
+        else if ($exception instanceof ModelNotFoundException) {
             return ApiResponse::error(
                 message: 'The requested resource was not found.',
                 code: 404
@@ -102,7 +102,7 @@ class Handler extends ExceptionHandler
         /*
          * 6. Rate limiting
          */
-        if ($exception instanceof ThrottleRequestsException) {
+        else if ($exception instanceof ThrottleRequestsException) {
             return ApiResponse::error(
                 message: 'Too many requests. Please try again later.',
                 code: 429
@@ -112,7 +112,7 @@ class Handler extends ExceptionHandler
         /*
          * 7. Database errors
          */
-        if ($exception instanceof QueryException) {
+        else if ($exception instanceof QueryException) {
             return ApiResponse::error(
                 message: config('app.debug')
                     ? $exception->getMessage()
@@ -125,7 +125,7 @@ class Handler extends ExceptionHandler
          * 8. Other HTTP exceptions:
          * 404, 405, 419, 429, and other HTTP status codes.
          */
-        if ($exception instanceof HttpExceptionInterface) {
+        else if ($exception instanceof HttpExceptionInterface) {
             $statusCode = $exception->getStatusCode();
 
             $message = $exception->getMessage()

@@ -9,6 +9,6 @@ class InvalidCredentialsException extends BaseApiException
     public function __construct(
         string $message = 'Invalid email or password.'
     ) {
-        parent::__construct($message, 404);
+        parent::__construct($message, 401);
     }
 }
